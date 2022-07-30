@@ -1,0 +1,63 @@
+{% extends 'master.html' %}
+
+{% block content %}
+
+<section id="cart_items">
+		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				  <li><a href="#">Home</a></li>
+				  <li class="active">Your Order</li>
+				</ol>
+			</div>
+			<div class="table-responsive cart_info">
+				<table class="table table-condensed">
+					<thead>
+						<tr class="cart_menu">
+							<td >Date</td>
+							<td class="image">Item</td>
+							<td class="description"> Name</td>
+							<td class="price">Price</td>
+							<td class="quantity">Quantity</td>
+							<td class="total">Total</td>
+							<td></td>
+						</tr>
+					</thead>
+					<tbody>
+                    {% for ord in order %}
+						<tr>
+							<td class="cart_price">
+								<p>{{ord.date}}</p>
+							</td>
+							<td class="cart_product">
+								<a href=""><img src="{{ord.image}}" alt=""></a>
+							</td>
+							<td class="cart_description">
+								<h4><a href="">{{ord.product}}</a></h4>
+
+							</td>
+							<td class="cart_price">
+								<p>₹ {{ord.price}}</p>
+							</td>
+							<td class="cart_quantity">
+								<div class="cart_quantity_button">
+									<input class="cart_quantity_input" type="text" name="quantity" value="{{ord.quantity}}"  autocomplete="off" size="2">
+
+								</div>
+							</td>
+							<td class="cart_total">
+								<p class="cart_total_price">₹ {{ord.total}}</p>
+							</td>
+						</tr>
+					{% empty %}
+					<h3> No Order</h3>
+                    {% endfor %}
+
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section> <!--/#cart_items-->
+
+{% endblock %}

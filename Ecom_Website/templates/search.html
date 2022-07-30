@@ -1,0 +1,52 @@
+{% extends 'master.html' %}
+
+{% block content %}
+<div class="container" >
+
+					<div class="features_items"><!--features_items-->
+						<h2 class="title text-center">Searched Product</h2>
+						{% for product in products %}
+						<div class="col-sm-4">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="{{product.image}}" height="250px"/>
+											<h2>&#8377; {{product.price}}</h2>
+											<p>{{product.name}}</p>
+											<a href="{% url 'cart_add' product.id %}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+										</div>
+										<div class="product-overlay">
+											<div class="overlay-content">
+												<h2>&#8377; {{product.price}}</h2>
+												<p>{{product.name}}</p>
+												<a href="{% url 'cart_add' product.id %}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											</div>
+										</div>
+								</div>
+								<div class="choose">
+									<ul class="nav nav-pills nav-justified">
+										<li><a href="product_detail?prod_id={{product.id}}"><i class="fa fa-plus-square"></i>View Product</a></li>
+
+									</ul>
+								</div>
+							</div>
+						</div>
+                        {% empty %}
+                        <div class="container text-center">
+                            <div class="logo-404">
+                                <a href="/"><img src="/static/images/home/logo.png" alt="" /></a>
+                            </div>
+                            <div class="content-404">
+                                <img src="/static/images/404/404.png" class="img-responsive" alt="" />
+                                <h1><b>OPPS!</b> We Couldn’t Find this Page</h1>
+                                <p>Uh... So it looks like you brock something. The page you are looking for has up and Vanished.</p>
+                                <h2><a href="/">Bring me back Home</a></h2>
+                            </div>
+                        </div>
+						{% endfor %}
+                    </div>
+
+</div>
+
+
+{% endblock %}
